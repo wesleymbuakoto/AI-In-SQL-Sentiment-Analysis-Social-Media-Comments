@@ -1,6 +1,6 @@
 DECLARE Sentiment_analysis_prompt STRING;
 
-SET Sentiment_analysis_prompt = 'Analyze this social media comment and label the sentiment that is being conveyed as either Positive, Neutral, or Negative \n Exmaple:Collaborating on a school project with peers. Teamwork makes the dream work. Answer:Positive';
+SET Sentiment_analysis_prompt = 'Analyze this social media comment and label the sentiment that is being conveyed as either Positive, Neutral, or Negative \n Example:Collaborating on a school project with peers. Teamwork makes the dream work. Answer:Positive';
 
 
 WITH PromptTable AS (
@@ -13,7 +13,7 @@ WITH PromptTable AS (
     Text,
     Unnamed__0,
     Platform
-  FROM `big-query-tester-344718.Clean_data.Social Media Comments`)
+  FROM `PROJECT_ID.Clean_data.Social Media Comments`)
 
 
 SELECT
@@ -26,7 +26,7 @@ SELECT
   Year,
   Month,
 FROM
-  ml.generate_text(MODEL `big-query-tester-344718.ai_model.company_llm`,
+  ml.generate_text(MODEL `PROJECT_ID.ai_model.company_llm`,
   (SELECT * FROM PromptTable),
   STRUCT(
     0.2 AS temperature,
